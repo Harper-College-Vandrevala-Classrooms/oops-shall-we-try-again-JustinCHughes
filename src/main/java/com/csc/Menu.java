@@ -4,9 +4,12 @@ import java.util.Scanner;
 // Your code goes here!
 public class Menu
 {
-    // Declaring bounds at the top so they stand out for user
+    // Declaring bounds and messages at the top so they stand out for user
     private static int LOWER_BOUND = 0;
     private static int UPPER_BOUND = 12;
+    private static String inputRequest = "Please enter a value: \n";
+    private static String errorMessage = "Input was invalid. Please try again.\n\n";
+    private static String successMessage = "Thank you. That input is valid. Have a nice day.\n";
 
     public static void main(String[] args)
     {
@@ -14,7 +17,7 @@ public class Menu
         boolean check = false;
         
         Scanner in = new Scanner(System.in);
-        System.out.print("Please enter a value: \n");
+        System.out.print(inputRequest);
         
         while (check == false)
         {
@@ -27,13 +30,12 @@ public class Menu
             // If check is still false, re-request for input
             if(check == false)
             {
-                System.out.print("Input was invalid. Please try again\n\n" +
-                                "Please enter a value: \n");
+                System.out.print(errorMessage + inputRequest);
                 in.nextLine();
             }
         }
         // Value was true, terminate program
-        System.out.print("Thank you. That input is valid. Have a nice day\n");
+        System.out.print(successMessage);
     }
 
     // Check if value submitted meets bound requirements
