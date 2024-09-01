@@ -3,8 +3,9 @@ import java.util.Scanner;
 
 // Your code goes here!
 public class Menu
-{ 
-    public static int promptResponse(boolean upperBoundActive, boolean lowerBoundActive
+{
+    // Calls Integer instead of int so that function can return null 
+    public static Integer promptResponse(boolean upperBoundActive, boolean lowerBoundActive
                                     ,int lowerBound, int upperBound, String inputMessage
                                     ,String errorMessage, String successMessage)
     {
@@ -35,6 +36,11 @@ public class Menu
                 {
                     check = true;
                 }
+            } else {
+                if(in.next().toString().toLowerCase().equals("exit"))
+                {
+                    return null; // Terminates program if user wants to exit
+                }
             }
             
             // If check is still false, re-request for input
@@ -53,7 +59,7 @@ public class Menu
 
     public static void main(String[] args)
     {
-        promptResponse(false, false, 0,100
+        promptResponse(true, true, 0,100
                         ,"Please enter a value: \n"
                         ,"Input was invalid. Please try again.\n\n"
                         ,"Thank you. That input is valid. Have a nice day.\n");
