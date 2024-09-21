@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Menu
 {
     // Calls Integer instead of int so that function can return null 
-    public static Integer promptResponse(boolean upperBoundActive, boolean lowerBoundActive
+    public static Integer promptResponse(boolean lowerBoundActive, boolean upperBoundActive
                                     ,int lowerBound, int upperBound, String inputMessage
                                     ,String errorMessage, String successMessage)
     {
@@ -14,33 +14,42 @@ public class Menu
         Scanner in = new Scanner(System.in);
         System.out.print(inputMessage);
         int userInput = 0;
+        String userStringInput;
         
         do {
             // Check if value if is int. If it is, call inputCheck to see if meets bound requirements
             if(in.hasNextInt())
             {
                 userInput = in.nextInt();
-                if (lowerBoundActive && upperBoundActive)
-                {
-                    check = userInput > lowerBound && userInput < upperBound;
-                }
-                else if (upperBoundActive)
-                {
-                    check = userInput < upperBound;
-                }
-                else if (lowerBoundActive)
-                {
-                    check = userInput > lowerBound;
-                }
-                else
-                {
-                    check = true;
-                }
             } else {
-                if(in.next().toString().toLowerCase().equals("exit"))
+
+                userStringInput = in.next().toLowerCase();
+                
+                if(userStringInput.equals("exit"))
                 {
                     return null; // Terminates program if user wants to exit
                 }
+                else if(userStringInput.equals("default"))
+                {
+                    userInput = 100;
+                }
+            }
+
+            if (lowerBoundActive && upperBoundActive)
+            {
+                check = userInput > lowerBound && userInput < upperBound;
+            }
+            else if (upperBoundActive)
+            {
+                check = userInput < upperBound;
+            }
+            else if (lowerBoundActive)
+            {
+                check = userInput > lowerBound;
+            }
+            else
+            {
+                check = true;
             }
             
             // If check is still false, re-request for input
